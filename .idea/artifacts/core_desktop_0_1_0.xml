@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="core-desktop-0.1.0">
+    <output-path>$PROJECT_DIR$/core/build/libs</output-path>
+    <root id="archive" name="core-desktop-0.1.0.jar">
+      <element id="module-output" name="core-compose.core.desktopMain" />
+    </root>
+  </artifact>
+</component>
