@@ -23,7 +23,7 @@ fun CoreAdaptiveBottomSheet(
 
     when (windowSize) {
         WindowSize.Large -> {
-            SoulDrawer(
+            CoreDrawer(
                 onClose = onClose,
                 spec = spec,
                 content = content,

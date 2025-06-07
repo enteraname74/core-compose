@@ -29,25 +29,25 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun SoulDrawer(
+internal fun CoreDrawer(
     onClose: () -> Unit,
     spec: CoreAdaptiveBottomSheetSpec,
     content: @Composable (closeWithAnim: () -> Unit) -> Unit,
 ) {
-    var isShown: SoulDrawerState by rememberSaveable {
-        mutableStateOf(SoulDrawerState.Init)
+    var isShown: CoreDrawerState by rememberSaveable {
+        mutableStateOf(CoreDrawerState.Init)
     }
     val coroutineScope = rememberCoroutineScope()
 
     val windowWidth = rememberWindowWidth().toInt()
 
     LaunchedEffect(Unit) {
-        isShown = SoulDrawerState.Open
+        isShown = CoreDrawerState.Open
     }
 
     val closeWithAnim: () -> Unit = {
         coroutineScope.launch {
-            isShown = SoulDrawerState.Closed
+            isShown = CoreDrawerState.Closed
             delay(CoreComposeUiConstants.AnimationDuration.normal.toLong())
             onClose()
         }
@@ -59,7 +59,7 @@ internal fun SoulDrawer(
             .zIndex(1f)
     ) {
         AnimatedVisibility(
-            visible = isShown == SoulDrawerState.Open,
+            visible = isShown == CoreDrawerState.Open,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
@@ -67,7 +67,7 @@ internal fun SoulDrawer(
         }
         AnimatedVisibility(
             modifier = Modifier.align(Alignment.TopEnd),
-            visible = isShown == SoulDrawerState.Open,
+            visible = isShown == CoreDrawerState.Open,
             enter = slideInHorizontally(
                 initialOffsetX = { windowWidth },
                 animationSpec = tween(durationMillis = CoreComposeUiConstants.AnimationDuration.normal)
@@ -134,7 +134,7 @@ private fun Scrim(
     )
 }
 
-private enum class SoulDrawerState {
+private enum class CoreDrawerState {
     Open,
     Closed,
     Init
