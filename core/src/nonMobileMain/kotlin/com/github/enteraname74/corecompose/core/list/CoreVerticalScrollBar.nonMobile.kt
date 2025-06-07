@@ -1,7 +1,6 @@
 package com.github.enteraname74.corecompose.core.list
 
 import androidx.compose.foundation.ScrollbarAdapter
-import androidx.compose.foundation.ScrollbarStyle
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable

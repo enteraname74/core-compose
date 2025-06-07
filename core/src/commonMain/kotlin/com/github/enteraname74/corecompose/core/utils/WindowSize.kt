@@ -1,6 +1,9 @@
 package com.github.enteraname74.corecompose.core.utils
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -19,19 +22,36 @@ enum class WindowSize(val maxValue: Dp) {
     }
 }
 
-internal expect val MediumThreshold: Dp
+internal val MediumThreshold: Dp = 900.dp
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-expect fun rememberWindowSize(): WindowSize
+fun rememberWindowSize(): WindowSize {
+    val density = LocalDensity.current
+    val windowWidth: Dp = with(density) {
+        LocalWindowInfo.current.containerSize.width.toDp()
+    }
 
-@Composable
-expect fun rememberWindowHeight(): Float
+    return WindowSize.Companion.getCorrespondingWindowSize(windowWidth)
+}
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-expect fun rememberWindowWidth(): Float
+fun rememberWindowHeight(): Float = LocalWindowInfo.current.containerSize.height.toFloat()
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-expect fun rememberWindowHeightDp(): Dp
+fun rememberWindowWidth(): Float = LocalWindowInfo.current.containerSize.width.toFloat()
 
+
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-expect fun rememberWindowWidthDp(): Dp
+fun rememberWindowWidthDp(): Dp = with(LocalDensity.current) {
+    LocalWindowInfo.current.containerSize.width.toDp()
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+fun rememberWindowHeightDp(): Dp = with(LocalDensity.current) {
+    LocalWindowInfo.current.containerSize.height.toDp()
+}
