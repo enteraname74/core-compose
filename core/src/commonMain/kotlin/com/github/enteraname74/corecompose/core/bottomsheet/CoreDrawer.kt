@@ -24,6 +24,7 @@ import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.zIndex
 import com.github.enteraname74.corecompose.core.CoreComposeUiConstants
+import com.github.enteraname74.corecompose.core.ext.disableFocus
 import com.github.enteraname74.corecompose.core.utils.rememberWindowWidth
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -93,6 +94,7 @@ private fun Drawer(
 ) {
     Box(
         modifier = Modifier
+            .disableFocus()
             .fillMaxHeight()
             .fillMaxWidth(.4f)
             .background(color = containerColor),
