@@ -53,7 +53,7 @@ fun LoadingScaffold(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(spec.containerColor)
+                    .background(spec.containerColor.copy(alpha = BottomSheetDefaults.ScrimColor.alpha))
                     .disableFocus(),
                 contentAlignment = Alignment.Center,
             ) {
